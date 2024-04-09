@@ -49,51 +49,7 @@
             border: 1px solid #CC0000;
         }
     </style>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyCshsk2aMj1LgezY0dSH_6U6jLfga5ko8k",
-            authDomain: "gauth-a695f.firebaseapp.com",
-            projectId: "gauth-a695f",
-            storageBucket: "gauth-a695f.appspot.com",
-            messagingSenderId: "89769486439",
-            appId: "1:89769486439:web:9c4acf4ba60788c7534cc2"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        onAuthStateChanged(auth, user => {
-            if (user) {
-                document.getElementById('user-name').textContent = `Hello, ${user.displayName}`;
-                document.getElementById('login-button').style.display = 'none';
-                document.getElementById('logout-button').style.display = 'inline-block';
-            } else {
-                document.getElementById('user-name').textContent = 'Not logged in';
-                document.getElementById('login-button').style.display = 'inline-block';
-                document.getElementById('logout-button').style.display = 'none';
-            }
-        });
-
-        const googleProvider = new GoogleAuthProvider();
-        const signInWithGoogle = async () => {
-            try {
-                await signInWithPopup(auth, googleProvider);
-            } catch (error) {
-                console.error(error);
-                alert(error.message);
-            }
-        };
-
-        const signOutUser = async () => {
-            await signOut(auth);
-        };
-
-        window.signInWithGoogle = signInWithGoogle;
-        window.signOutUser = signOutUser;
-    </script>
 </head>
 <body>
     <header>
